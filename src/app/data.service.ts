@@ -31,43 +31,36 @@ export default class DataService {
   darkTheme$: Observable<any> = of("darkTheme");
 
   // Creation pipeable operators
-  // .of()
   _of(item) {
     const op = of(item);
     this.handleResults(op);
   }
 
-  // .from()
   _from(item) {
     const op = from(item);
     this.handleResults(op);
   }
 
-  // .interval()
   _interval(item: number) {
     const op = interval(item);
     this.handleResults(op);
   }
 
-  // .iif()
   _iif(condition) {
     const op = iif(() => condition, this.lightTheme$, this.darkTheme$);
     this.handleResults(op);
   }
 
-  // .defer()
   _defer(condition) {
     const op = defer(() => (condition ? this.lightTheme$ : this.darkTheme$));
     this.handleResults(op);
   }
 
-  // .defaultIfEmpty()
   _defaultIfEmpty(condition) {
     const op = of().pipe(defaultIfEmpty(condition));
     this.handleResults(op);
   }
 
-  // .combineLatset()
   _combineLatest(condition) {
     const intervalOne$ = interval(1000);
     const intervalTwo$ = interval(2000);

@@ -67,19 +67,44 @@ export class AppComponent {
     },
     {
       action: () => this.dataService._combineLatest("Empty 🤔"),
-      category: "Combination functions",
       code: `combineLatest(ob1$, ob2$, ob3$ ...)`,
-      desc: "When any observable emits a value, emit the last emitted value from each",
+      desc:
+        "When any observable emits a value, emit the last emitted value from each",
       name: "combineLatest(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest"
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest"
     },
     {
-      name: "map",
-      action: () => this.dataService._of(this.strInputData)
+      action: () => this.dataService._concat("Empty 🤔"),
+      code: `concat(ob1$, ob2$, ob3$ ...)`,
+      desc: "Subscribe to observables in order as previous completes",
+      name: "concat(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/concat"
     },
     {
-      name: "map",
-      action: () => this.dataService._of(this.strInputData)
+      action: () => this.dataService._merge("Empty 🤔"),
+      code: `merge(ob1$, ob2$, ob3$ ...)`,
+      desc: "Turn multiple observables into a single observable",
+      name: "merge(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/merge"
+    },
+    {
+      action: () => this.dataService._startWith("Empty 🤔"),
+      code: `startWith(ob1$, ob2$, ob3$ ...)`,
+      desc:
+        "Emit given value first",
+      name: "startWith(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/startwith"
+    },
+    {
+      action: () => this.dataService._withLatestFrom("Empty 🤔"),
+      code: `withLatestFrom(ob1$, ob2$, ob3$ ...)`,
+      desc:
+        "provide the last value from another observable",
+      name: "withLatestFrom(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom"
     }
   ];
   constructor(public dataService: DataService) {}

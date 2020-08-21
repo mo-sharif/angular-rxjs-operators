@@ -12,7 +12,7 @@
 					<h2>{{item.name}}</h2>
 					<p>{{item.desc}}</p>
 					<pre class="code">{{item.code}}</pre>
-          <a *ngIf="item.link" [href]="item.link">Learn more</a>
+          <a *ngIf="item.link" [href]="item.link" target="_blank">Learn more</a>
 					<ng-container *ngIf="item.name === 'fromEvent(...)'">
 						<input #input/>
           </ng-container>
