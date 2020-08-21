@@ -67,6 +67,7 @@ export class AppComponent {
     },
     {
       action: () => this.dataService._combineLatest("Empty 🤔"),
+      category: "Combination functions",
       code: `combineLatest(ob1$, ob2$, ob3$ ...)`,
       desc:
         "When any observable emits a value, emit the last emitted value from each",
@@ -75,33 +76,31 @@ export class AppComponent {
         "https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest"
     },
     {
-      action: () => this.dataService._concat("Empty 🤔"),
+      action: () => this.dataService._concat(),
       code: `concat(ob1$, ob2$, ob3$ ...)`,
-      desc: "Subscribe to observables in order as previous completes",
+      desc: "Subscribe to observables in order as previous completes, like transactions at an ATM",
       name: "concat(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/concat"
     },
     {
-      action: () => this.dataService._merge("Empty 🤔"),
+      action: () => this.dataService._merge(),
       code: `merge(ob1$, ob2$, ob3$ ...)`,
       desc: "Turn multiple observables into a single observable",
       name: "merge(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/merge"
     },
     {
-      action: () => this.dataService._startWith("Empty 🤔"),
-      code: `startWith(ob1$, ob2$, ob3$ ...)`,
-      desc:
-        "Emit given value first",
+      action: () => this.dataService._startWith(this.inputData),
+      code: `from(${this.strInputData}).pipe(startWith("💩"))`,
+      desc: "Emit given value first",
       name: "startWith(...)",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/combination/startwith"
     },
     {
-      action: () => this.dataService._withLatestFrom("Empty 🤔"),
-      code: `withLatestFrom(ob1$, ob2$, ob3$ ...)`,
-      desc:
-        "provide the last value from another observable",
+      action: () => this.dataService._withLatestFrom(this.inputData),
+      code: `withLatestFrom(of("🌵"))`,
+      desc: "provide the last value from another observable",
       name: "withLatestFrom(...)",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom"

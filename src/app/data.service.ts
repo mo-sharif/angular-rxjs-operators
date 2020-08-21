@@ -11,9 +11,18 @@ import {
   Subscription,
   iif,
   combineLatest,
-  timer
+  timer,
+  concat,
+  merge
 } from "rxjs";
-import { tap, defaultIfEmpty } from "rxjs/operators";
+import {
+  tap,
+  defaultIfEmpty,
+  delay,
+  startWith,
+  withLatestFrom,
+  map
+} from "rxjs/operators";
 
 @Injectable()
 export default class DataService {
@@ -29,8 +38,15 @@ export default class DataService {
   //Observables return css class names
   lightTheme$: Observable<any> = of("lightTheme");
   darkTheme$: Observable<any> = of("darkTheme");
+  launchObservables: Observable<string>[] = [
+    of("3️⃣").pipe(delay(600)),
+    of("2️⃣").pipe(delay(600)),
+    of("1️⃣").pipe(delay(600)),
+    of("🚀").pipe(delay(500)),
+    of("💨").pipe(delay(400))
+  ];
 
-  // Creation pipeable operators
+  // Creation operators
   _of(item) {
     const op = of(item);
     this.handleResults(op);
@@ -60,7 +76,7 @@ export default class DataService {
     const op = of().pipe(defaultIfEmpty(condition));
     this.handleResults(op);
   }
-
+  // Combination operators
   _combineLatest(condition) {
     const intervalOne$ = interval(1000);
     const intervalTwo$ = interval(2000);
@@ -74,6 +90,32 @@ export default class DataService {
       (one, two, three) => {
         return `⏱ ${one} | ⏱ ${two} | ⏱ ${three}`;
       }
+    );
+    this.handleResults(op);
+  }
+
+  _concat() {
+    const op = concat(...this.launchObservables);
+    this.handleResults(op);
+  }
+
+  _merge() {
+    const op = merge(...this.launchObservables);
+    this.handleResults(op);
+  }
+
+  _startWith(items) {
+    const op = from(items).pipe(startWith("💩"));
+    this.handleResults(op);
+  }
+
+  _withLatestFrom(items) {
+    const user$ = of("🌵");
+    const users$ = of(items);
+
+    const op = users$.pipe(
+      withLatestFrom(user$),
+      map(([users, user]) => `User ${user} Users ${users}`)
     );
     this.handleResults(op);
   }
