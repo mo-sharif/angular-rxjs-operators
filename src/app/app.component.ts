@@ -20,19 +20,22 @@ export class AppComponent {
       category: "Creation functions",
       code: `from(${this.strInputData})`,
       desc: "Turn an array, promise, or iterable into an observable",
-      name: "from(...)"
+      name: "from(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/from"
     },
     {
       action: () => this.dataService._interval(1000),
       code: `interval(1000)`,
       desc: "Emit numbers in sequence based on provided timeframe.",
-      name: "interval(...)"
+      name: "interval(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/interval"
     },
     {
       action: () => this.dataService._of(this.inputData),
       code: `of(${this.strInputData})`,
       desc: "Emit a sequence of an object, array, and function",
-      name: "of(...)"
+      name: "of(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/of"
     },
     {
       // condition hardcodede to false
@@ -44,8 +47,7 @@ export class AppComponent {
       )`,
       desc: "Subscribe to first or second observable based on a condition",
       name: "defer(...)",
-      link:
-        "https://medium.com/javascript-everyday/rxjs-iif-is-not-the-same-as-defer-with-ternary-operator-7cb012903fe7"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/defer"
     },
     {
       // condition hardcodede to false
@@ -57,13 +59,16 @@ export class AppComponent {
         observable2$,
       )`,
       desc: "Subscribe to first or second observable based on a condition",
-      name: "iif(...)"
+      name: "iif(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/conditional/iif"
     },
     {
       action: () => this.dataService._defaultIfEmpty("Empty 🤔"),
       code: `of().pipe(defaultIfEmpty('Empty 🤔'))`,
       desc: "Emit given value if nothing is emitted before completion",
-      name: "defaultIfEmpty(...)"
+      name: "defaultIfEmpty(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/conditional/defaultifempty"
     },
     {
       action: () => this.dataService._combineLatest("Empty 🤔"),
@@ -78,7 +83,8 @@ export class AppComponent {
     {
       action: () => this.dataService._concat(),
       code: `concat(ob1$, ob2$, ob3$ ...)`,
-      desc: "Subscribe to observables in order as previous completes, like transactions at an ATM",
+      desc:
+        "Subscribe to observables in order as previous completes, like transactions at an ATM",
       name: "concat(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/concat"
     },
