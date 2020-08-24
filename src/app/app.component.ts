@@ -14,7 +14,7 @@ export class AppComponent {
   inputData = this.trees;
   strInputData = JSON.stringify(this.inputData);
 
-  textField = new FormControl("test");
+  textField = new FormControl("");
 
   items = [
     {
