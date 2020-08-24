@@ -13,7 +13,8 @@ import {
   combineLatest,
   timer,
   concat,
-  merge
+  merge,
+throwError
 } from "rxjs";
 import {
   tap,
@@ -21,7 +22,8 @@ import {
   delay,
   startWith,
   withLatestFrom,
-  map
+  map,
+catchError
 } from "rxjs/operators";
 
 @Injectable()
@@ -117,6 +119,12 @@ export default class DataService {
       withLatestFrom(user$),
       map(([users, user]) => `User ${user} Users ${users}`)
     );
+    this.handleResults(op);
+  }
+  _catchError(error) {
+    const observableWithError$ = of().pipe(throwError)
+
+    const op = observableWithError$.pipe(catchError(() => of(error)))
     this.handleResults(op);
   }
 

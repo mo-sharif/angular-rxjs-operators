@@ -114,6 +114,15 @@ export class AppComponent {
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom",
     },
+    {
+      action: () => this.dataService._catchError("Error 💩"),
+      category: "Error Handling",
+      code: `catchError((e) => of("Error 💩"))`,
+      desc: "Gracefully handle errors in an observable sequence",
+      name: "catchError(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom",
+    },
   ];
   constructor(public dataService: DataService) {}
 
