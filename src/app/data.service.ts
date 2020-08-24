@@ -14,7 +14,7 @@ import {
   timer,
   concat,
   merge,
-throwError
+  throwError
 } from "rxjs";
 import {
   tap,
@@ -23,7 +23,9 @@ import {
   startWith,
   withLatestFrom,
   map,
-catchError
+  catchError,
+mergeMap,
+retry
 } from "rxjs/operators";
 
 @Injectable()
@@ -122,9 +124,26 @@ export default class DataService {
     this.handleResults(op);
   }
   _catchError(error) {
-    const observableWithError$ = of().pipe(throwError)
+    const observableWithError$ = of().pipe(throwError);
 
-    const op = observableWithError$.pipe(catchError(() => of(error)))
+    const op = observableWithError$.pipe(catchError(() => of(error)));
+    this.handleResults(op);
+  }
+
+  _retry(times) {
+    const interval$ = interval(500);
+
+    const op = interval$.pipe(
+      mergeMap(val => {
+        //throw error for demonstration
+        if (val > 2) {
+          return throwError("Error 💩");
+        }
+        return of(val);
+      }),
+      //retry 2 times on error
+      retry(times)
+    );
     this.handleResults(op);
   }
 

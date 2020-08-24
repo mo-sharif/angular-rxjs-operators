@@ -121,7 +121,15 @@ export class AppComponent {
       desc: "Gracefully handle errors in an observable sequence",
       name: "catchError(...)",
       link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom",
+        "https://www.learnrxjs.io/learn-rxjs/operators/error_handling/catch",
+    },
+    {
+      action: () => this.dataService._retry(2),
+      code: `retry(2)`,
+      desc: "Retry an observable sequence a specific number of times should an error occur",
+      name: "retry(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/error_handling/retry",
     },
   ];
   constructor(public dataService: DataService) {}
