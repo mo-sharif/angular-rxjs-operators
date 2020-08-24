@@ -1,19 +1,21 @@
 import { AfterViewInit, Component, ViewChild, ElementRef } from "@angular/core";
 import DataService from "./data.service";
 import { Observable, fromEvent } from "rxjs";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  @ViewChild("input", { static: true }) inputRef: ElementRef;
-
   trees = ["🌴", "🌲", "🌳", "🎄"];
   emojis = ["👍", "🦄", "💩"];
   inputData = this.trees;
   strInputData = JSON.stringify(this.inputData);
+
+  textField = new FormControl("test");
+
   items = [
     {
       action: () => this.dataService._from(this.inputData),
@@ -21,21 +23,21 @@ export class AppComponent {
       code: `from(${this.strInputData})`,
       desc: "Turn an array, promise, or iterable into an observable",
       name: "from(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/from"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/from",
     },
     {
       action: () => this.dataService._interval(1000),
       code: `interval(1000)`,
       desc: "Emit numbers in sequence based on provided timeframe.",
       name: "interval(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/interval"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/interval",
     },
     {
       action: () => this.dataService._of(this.inputData),
       code: `of(${this.strInputData})`,
       desc: "Emit a sequence of an object, array, and function",
       name: "of(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/of"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/of",
     },
     {
       // condition hardcodede to false
@@ -47,7 +49,7 @@ export class AppComponent {
       )`,
       desc: "Subscribe to first or second observable based on a condition",
       name: "defer(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/defer"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/defer",
     },
     {
       // condition hardcodede to false
@@ -60,7 +62,7 @@ export class AppComponent {
       )`,
       desc: "Subscribe to first or second observable based on a condition",
       name: "iif(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/conditional/iif"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/conditional/iif",
     },
     {
       action: () => this.dataService._defaultIfEmpty("Empty 🤔"),
@@ -68,7 +70,7 @@ export class AppComponent {
       desc: "Emit given value if nothing is emitted before completion",
       name: "defaultIfEmpty(...)",
       link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/conditional/defaultifempty"
+        "https://www.learnrxjs.io/learn-rxjs/operators/conditional/defaultifempty",
     },
     {
       action: () => this.dataService._combineLatest("Empty 🤔"),
@@ -78,7 +80,7 @@ export class AppComponent {
         "When any observable emits a value, emit the last emitted value from each",
       name: "combineLatest(...)",
       link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest"
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/combinelatest",
     },
     {
       action: () => this.dataService._concat(),
@@ -86,14 +88,14 @@ export class AppComponent {
       desc:
         "Subscribe to observables in order as previous completes, like transactions at an ATM",
       name: "concat(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/concat"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/concat",
     },
     {
       action: () => this.dataService._merge(),
       code: `merge(ob1$, ob2$, ob3$ ...)`,
       desc: "Turn multiple observables into a single observable",
       name: "merge(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/merge"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/merge",
     },
     {
       action: () => this.dataService._startWith(this.inputData),
@@ -101,16 +103,19 @@ export class AppComponent {
       desc: "Emit given value first",
       name: "startWith(...)",
       link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/combination/startwith"
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/startwith",
     },
     {
       action: () => this.dataService._withLatestFrom(this.inputData),
       code: `withLatestFrom(of("🌵"))`,
+      isInput: false,
       desc: "provide the last value from another observable",
       name: "withLatestFrom(...)",
       link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom"
-    }
+        "https://www.learnrxjs.io/learn-rxjs/operators/combination/withlatestfrom",
+    },
   ];
   constructor(public dataService: DataService) {}
+
+  ngOnInit() {}
 }

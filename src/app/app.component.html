@@ -1,39 +1,43 @@
 <div class="wrapper">
-	<intro></intro>
-	<div class="container">
-		<h1>RxJS Operators</h1>
-		<div *ngFor="let item of items; let index">
-			<h4>{{item.category}}</h4>
-			<section [className]="this.dataService.results$ | async">
+  <intro></intro>
+  <div class="container">
+    <h1>RxJS Operators</h1>
+    <div *ngFor="let item of items; let index">
+      <h4>{{ item.category }}</h4>
+      <section [className]="this.dataService.results$ | async">
+        <div>
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.desc }}</p>
+          <ng-container *ngIf="item?.isInput; else showCode">
+            <input type="text" [formControlName]="textField" />
+		  </ng-container>
+		  <ng-template #showCode>
+			  <pre class="code">{{ item.code }}</pre>
+		  </ng-template>
+          <a *ngIf="item.link" [href]="item.link" target="_blank">Learn more</a>
+        </div>
 
-				<div>
-					<h2>{{item.name}}</h2>
-					<p>{{item.desc}}</p>
-					<pre class="code">{{item.code}}</pre>
-					<a *ngIf="item.link" [href]="item.link" target="_blank">Learn more</a>
-					<ng-container *ngIf="item.name === 'fromEvent(...)'">
-						<input #input/>
-          </ng-container>
-				</div>
+        <ng-container *ngIf="this.dataService.results$ | async; else noResults">
+          <button (click)="this.dataService.unsubscribe()">✘</button>
+        </ng-container>
 
-				<ng-container *ngIf="this.dataService.results$ | async; else noResults">
-					<button (click)="this.dataService.unsubscribe()">✘</button>
-				</ng-container>
+        <ng-template #noResults>
+          <button (click)="item.action()">▶︎</button>
+        </ng-template>
+      </section>
+    </div>
+  </div>
+  <div class="container">
+    <a href="https://www.learnrxjs.io/learn-rxjs/operators">RxJS operators</a>
+    <a href="https://rxmarbles.com/#interval">RxJS marbles</a>
+    <a
+      href="https://medium.com/javascript-everyday/rxjs-iif-is-not-the-same-as-defer-with-ternary-operator-7cb012903fe7"
+    >
+      Defer vs iif</a
+    >
+  </div>
 
-				<ng-template #noResults>
-					<button (click)="item.action()">▶︎</button>
-				</ng-template>
-
-			</section>
-		</div>
-	</div>
-	<div class="container">
-		<a href="https://www.learnrxjs.io/learn-rxjs/operators">RxJS operators</a>
-		<a href="https://rxmarbles.com/#interval">RxJS marbles</a>
-    <a href="https://medium.com/javascript-everyday/rxjs-iif-is-not-the-same-as-defer-with-ternary-operator-7cb012903fe7"> Defer vs iif</a>
-	</div>
-
-	<div class="container--bottom">
-		<h2>Results: {{(this.dataService.results$ | async) | json}}</h2>
-	</div>
+  <div class="container--bottom">
+    <h2>Results: {{ this.dataService.results$ | async | json }}</h2>
+  </div>
 </div>
