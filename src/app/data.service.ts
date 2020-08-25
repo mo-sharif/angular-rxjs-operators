@@ -152,8 +152,7 @@ export default class DataService {
   }
 
   _handleInputChange(value) {
-    console.log(value)
-    const op = of(value).pipe(debounceTime(500), mapTo(value))
+    const op = of(value)
       this.handleResults(op);
   }
 
