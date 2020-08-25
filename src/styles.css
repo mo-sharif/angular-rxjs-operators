@@ -34,11 +34,12 @@ margin-bottom: 20px;
   margin-bottom: 4rem;
 }
 
-.code {
+.code, input {
   background:rgb(243, 243, 243);
   padding: 5px;
-  width: "auto";
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 0.25rem;
 }
 
 .container section, .box {
