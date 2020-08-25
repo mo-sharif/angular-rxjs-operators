@@ -25,7 +25,11 @@ import {
   map,
   catchError,
 mergeMap,
-retry
+retry,
+debounce,
+debounceTime,
+mapTo,
+switchMap
 } from "rxjs/operators";
 
 @Injectable()
@@ -145,6 +149,12 @@ export default class DataService {
       retry(times)
     );
     this.handleResults(op);
+  }
+
+  _handleInputChange(value) {
+    console.log(value)
+    const op = of(value).pipe(debounceTime(500), mapTo(value))
+      this.handleResults(op);
   }
 
   handleResults(op: Observable<any>) {

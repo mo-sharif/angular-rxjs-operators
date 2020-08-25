@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ViewChild, ElementRef } from "@angular/core";
 import DataService from "./data.service";
 import { Observable, fromEvent } from "rxjs";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
+import { map, debounceTime, distinctUntilChanged, filter } from "rxjs/operators";
 
 @Component({
   selector: "my-app",
@@ -13,13 +14,14 @@ export class AppComponent {
   emojis = ["👍", "🦄", "💩"];
   inputData = this.trees;
   strInputData = JSON.stringify(this.inputData);
+  myForm: FormGroup;
 
-  textField = new FormControl("");
+  myInput = new FormControl("");
 
   items = [
     {
       action: () => this.dataService._from(this.inputData),
-      category: "Creation functions",
+      category: "Creation",
       code: `from(${this.strInputData})`,
       desc: "Turn an array, promise, or iterable into an observable",
       name: "from(...)",
@@ -54,7 +56,7 @@ export class AppComponent {
     {
       // condition hardcodede to false
       action: () => this.dataService._iif(false),
-      category: "Conditional functions",
+      category: "Conditional",
       code: `iif(
     condition: () => boolean,
         observable1$,
@@ -74,7 +76,7 @@ export class AppComponent {
     },
     {
       action: () => this.dataService._combineLatest("Empty 🤔"),
-      category: "Combination functions",
+      category: "Combination",
       code: `combineLatest(ob1$, ob2$, ob3$ ...)`,
       desc:
         "When any observable emits a value, emit the last emitted value from each",
@@ -131,8 +133,30 @@ export class AppComponent {
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/error_handling/retry",
     },
+    {
+      category: "Filteration",
+      code: `debounceTime(500)`,
+      isInput: true,
+      desc: "Discard emitted values that take less than the specified time between output",
+      name: "debounceTime(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/error_handling/retry",
+    },
   ];
-  constructor(public dataService: DataService) {}
+  constructor(public dataService: DataService) {
+        this.myForm = new FormGroup({
+       myInput: new FormControl()
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.myForm.valueChanges.pipe(
+      // filter out words with 3 letters or less
+      filter(value  => value.myInput.length >= 3),
+      // debounceTime 500ms
+      debounceTime(500),
+      distinctUntilChanged(),
+      map(value => this.dataService._handleInputChange(value.myInput))
+    ).subscribe()
+  }
 }
