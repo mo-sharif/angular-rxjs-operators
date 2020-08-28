@@ -29,7 +29,9 @@ retry,
 debounce,
 debounceTime,
 mapTo,
-switchMap
+switchMap,
+distinctUntilChanged,
+take
 } from "rxjs/operators";
 
 @Injectable()
@@ -154,6 +156,16 @@ export default class DataService {
   _handleInputChange(value) {
     const op = of(value)
       this.handleResults(op);
+  }
+
+  _distinctUntilChanged(items){
+    const op = from(items).pipe(distinctUntilChanged())
+    this.handleResults(op)
+  }
+
+  _take(items, times){
+    const op = from(items).pipe(take(times))
+    this.handleResults(op)
   }
 
   handleResults(op: Observable<any>) {

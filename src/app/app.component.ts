@@ -15,9 +15,8 @@ import {
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  trees = ["🌴", "🌲", "🌳", "🎄"];
-  emojis = ["👍", "🦄", "💩"];
-  inputData = this.trees;
+  emojis = ["🌴", "🌴", "👍", "🦄"];
+  inputData = this.emojis;
   strInputData = JSON.stringify(this.inputData);
   myForm: FormGroup;
 
@@ -148,8 +147,8 @@ export class AppComponent {
         "https://www.learnrxjs.io/learn-rxjs/operators/filtering/debouncetime"
     },
     {
-      code: `distinctUntilChanged()`,
-      isInput: true,
+      action: () => this.dataService._distinctUntilChanged(this.inputData),
+      code: `distinctUntilChanged(${this.strInputData})`,
       desc: "Only emit when the current value is different than the last",
       name: "distinctUntilChanged(...)",
       link:
@@ -162,6 +161,14 @@ export class AppComponent {
       name: "filter(...)",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter"
+    },
+    {
+      action: () => this.dataService._take(this.inputData, 2),
+      code: `take(2)`,
+      desc: "Emit provided number of values before completing",
+      name: "take(count: number): Observable",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/take"
     }
   ];
   constructor(public dataService: DataService) {
