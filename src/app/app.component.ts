@@ -169,6 +169,22 @@ export class AppComponent {
       name: "take(count: number): Observable",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/filtering/take"
+    },
+    {
+      action: () => this.dataService._takeUntil(),
+      code: `takeUntil(timer(2000))`,
+      desc: "Emit values until provided observable emits",
+      name: "takeUntil(notifier: Observable): Observable",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
+    },
+    {
+      action: () => this.dataService._takeUntil(),
+      code: `takeUntil(timer(2000))`,
+      desc: "Emit values until provided observable emits",
+      name: "takeUntil(notifier: Observable): Observable",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
     }
   ];
   constructor(public dataService: DataService) {

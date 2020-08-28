@@ -24,14 +24,15 @@ import {
   withLatestFrom,
   map,
   catchError,
-mergeMap,
-retry,
-debounce,
-debounceTime,
-mapTo,
-switchMap,
-distinctUntilChanged,
-take
+  mergeMap,
+  retry,
+  debounce,
+  debounceTime,
+  mapTo,
+  switchMap,
+  distinctUntilChanged,
+  take,
+takeUntil
 } from "rxjs/operators";
 
 @Injectable()
@@ -154,18 +155,28 @@ export default class DataService {
   }
 
   _handleInputChange(value) {
-    const op = of(value)
-      this.handleResults(op);
+    const op = of(value);
+    this.handleResults(op);
   }
 
-  _distinctUntilChanged(items){
-    const op = from(items).pipe(distinctUntilChanged())
-    this.handleResults(op)
+  _distinctUntilChanged(items) {
+    const op = from(items).pipe(distinctUntilChanged());
+    this.handleResults(op);
   }
 
-  _take(items, times){
-    const op = from(items).pipe(take(times))
-    this.handleResults(op)
+  _take(items, times) {
+    const op = from(items).pipe(take(times));
+    this.handleResults(op);
+  }
+
+  _takeUntil() {
+    //emit value every 300ms
+    const source = interval(300);
+    //after 2 seconds, emit value
+    const timer$ = timer(2000);
+    //when timer emits after 2s, complete source
+    const op = source.pipe(takeUntil(timer$));
+    this.handleResults(op);
   }
 
   handleResults(op: Observable<any>) {
