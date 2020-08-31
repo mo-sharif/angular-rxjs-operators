@@ -191,18 +191,20 @@ export class AppComponent {
       link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/mapto"
     },
     {
-      action: () => this.dataService._mapTo("👍"),
-      code: `mapTo("👍")`,
-      desc: "Map emissions to constant value",
-      name: "mapTo(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/mapto"
-    },
-    {
       action: () => this.dataService._scan(this.inputData),
       code: `scan((all, cur) => [cur, ...all], [])`,
       desc: "Reduce over time",
       name: "scan(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/scan"
+    },
+    {
+      action: () => this.dataService._switchMap(this.inputData),
+      code: `switchMap((item) => of(["🚗", "⚽️", "🍻"])`,
+      desc:
+        "Map to observable, complete previous inner observable, emit values",
+      name: "switchMap(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/transformation/switchmap"
     }
   ];
   constructor(public dataService: DataService) {

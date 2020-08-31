@@ -33,7 +33,7 @@ import {
   distinctUntilChanged,
   take,
   takeUntil,
-scan
+  scan
 } from "rxjs/operators";
 
 @Injectable()
@@ -117,14 +117,14 @@ export default class DataService {
     this.handleResults(op);
   }
 
-  _startWith(items) {
-    const op = from(items).pipe(startWith("💩"));
+  _startWith(emojis) {
+    const op = from(emojis).pipe(startWith("💩"));
     this.handleResults(op);
   }
 
-  _withLatestFrom(items) {
+  _withLatestFrom(emojis) {
     const user$ = of("🌵");
-    const users$ = of(items);
+    const users$ = of(emojis);
 
     const op = users$.pipe(
       withLatestFrom(user$),
@@ -161,13 +161,13 @@ export default class DataService {
     this.handleResults(op);
   }
 
-  _distinctUntilChanged(items) {
-    const op = from(items).pipe(distinctUntilChanged());
+  _distinctUntilChanged(emojis) {
+    const op = from(emojis).pipe(distinctUntilChanged());
     this.handleResults(op);
   }
 
-  _take(items, times) {
-    const op = from(items).pipe(take(times));
+  _take(emojis, times) {
+    const op = from(emojis).pipe(take(times));
     this.handleResults(op);
   }
 
@@ -183,19 +183,26 @@ export default class DataService {
 
   // Transformation
 
-  _map(items) {
-    const op = from(items).pipe(map((res) => res + "✅"))
-    this.handleResults(op)
+  _map(emojis) {
+    const op = from(emojis).pipe(map(res => res + "✅"));
+    this.handleResults(op);
   }
 
   _mapTo(mapToItem) {
-    const op = interval(1000).pipe(mapTo(mapToItem))
-    this.handleResults(op)
+    const op = interval(1000).pipe(mapTo(mapToItem));
+    this.handleResults(op);
   }
 
-  _scan(items) {
-    const op = from(items).pipe(scan((all, cur) => [cur, ...all], []))
-    this.handleResults(op)
+  _scan(emojis) {
+    const op = from(emojis).pipe(scan((all, cur) => [cur, ...all], []));
+    this.handleResults(op);
+  }
+
+  _switchMap(emojis) {
+    const op = of(emojis).pipe(
+      switchMap((item: string) => of(["🚗", "⚽️", "🍻"]))
+    );
+    this.handleResults(op);
   }
 
   handleResults(op: Observable<any>) {
