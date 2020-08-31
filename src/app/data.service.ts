@@ -210,6 +210,14 @@ export default class DataService {
     this.handleResults(op);
   }
 
+  _toPromise(emojis) {
+    const op = of(emojis).toPromise()
+    // output emojis
+  .then(result => {
+    console.log('From Promise:', result);
+  });
+  }
+
   handleResults(op: Observable<any>) {
     this.listener = op.pipe(tap(res => console.log(res))).subscribe();
     // store operation Observable to render results for the UI

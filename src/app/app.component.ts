@@ -213,6 +213,13 @@ export class AppComponent {
       desc: "Transparently perform actions or side-effects, such as logging",
       name: "tap(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/utility/do"
+    },
+    {
+      action: () => this.dataService._toPromise(this.inputData),
+      code: `toPromise()`,
+      desc: "Convert observable to promise (Not pipable)",
+      name: "toPromise(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/utility/topromise"
     }
   ];
   constructor(public dataService: DataService) {
