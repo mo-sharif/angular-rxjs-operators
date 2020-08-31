@@ -32,7 +32,7 @@ import {
   switchMap,
   distinctUntilChanged,
   take,
-takeUntil
+  takeUntil
 } from "rxjs/operators";
 
 @Injectable()
@@ -49,20 +49,16 @@ export default class DataService {
   //Observables return css class names
   lightTheme$: Observable<any> = of("lightTheme");
   darkTheme$: Observable<any> = of("darkTheme");
+
   launchObservables: Observable<string>[] = [
-    of("3️⃣").pipe(delay(600)),
-    of("2️⃣").pipe(delay(600)),
+    of("3️⃣").pipe(delay(800)),
+    of("2️⃣").pipe(delay(700)),
     of("1️⃣").pipe(delay(600)),
     of("🚀").pipe(delay(500)),
     of("💨").pipe(delay(400))
   ];
 
   // Creation operators
-  _of(item) {
-    const op = of(item);
-    this.handleResults(op);
-  }
-
   _from(item) {
     const op = from(item);
     this.handleResults(op);
@@ -73,13 +69,18 @@ export default class DataService {
     this.handleResults(op);
   }
 
-  _iif(condition) {
-    const op = iif(() => condition, this.lightTheme$, this.darkTheme$);
+  _of(item) {
+    const op = of(item);
     this.handleResults(op);
   }
 
   _defer(condition) {
     const op = defer(() => (condition ? this.lightTheme$ : this.darkTheme$));
+    this.handleResults(op);
+  }
+
+  _iif(condition) {
+    const op = iif(() => condition, this.lightTheme$, this.darkTheme$);
     this.handleResults(op);
   }
 
