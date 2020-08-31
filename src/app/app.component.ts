@@ -99,7 +99,7 @@ export class AppComponent {
     {
       action: () => this.dataService._merge(),
       code: `merge(ob1$, ob2$, ob3$ ...)`,
-      desc: "Turn multiple observables into a single observable",
+      desc: "Turn multiple observables into a single observable (regardless of order)",
       name: "merge(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/combination/merge"
     },
