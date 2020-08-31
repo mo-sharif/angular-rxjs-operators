@@ -6,6 +6,7 @@
   box-sizing: border-box;
 }
 a {
+  font-family: 'Roboto', sans-serif;
   color: #da3654;
   -webkit-text-decoration: none;
   text-decoration: none;
