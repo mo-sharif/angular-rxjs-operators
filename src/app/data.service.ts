@@ -183,7 +183,12 @@ export default class DataService {
   // Transformation
 
   _map(items) {
-    const op = from(items).pipe(map((res) => `${res}✅`))
+    const op = from(items).pipe(map((res) => res + "✅"))
+    this.handleResults(op)
+  }
+
+  _mapTo(mapToItem) {
+    const op = interval(1000).pipe(mapTo(mapToItem))
     this.handleResults(op)
   }
 

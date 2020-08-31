@@ -178,10 +178,24 @@ export class AppComponent {
     {
       action: () => this.dataService._map(this.inputData),
       category: "Transformation",
-      code: `map((res) => doSomething(res))`,
+      code: `map((res) => res + "✅")`,
       desc: "Apply projection with each value from source",
       name: "map(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/map"
+    },
+    {
+      action: () => this.dataService._mapTo("👍"),
+      code: `mapTo("👍")`,
+      desc: "Map emissions to constant value",
+      name: "mapTo(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/mapto"
+    },
+    {
+      action: () => this.dataService._mapTo("👍"),
+      code: `mapTo("👍")`,
+      desc: "Map emissions to constant value",
+      name: "mapTo(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/mapto"
     }
   ];
   constructor(public dataService: DataService) {
