@@ -32,7 +32,8 @@ import {
   switchMap,
   distinctUntilChanged,
   take,
-  takeUntil
+  takeUntil,
+scan
 } from "rxjs/operators";
 
 @Injectable()
@@ -189,6 +190,11 @@ export default class DataService {
 
   _mapTo(mapToItem) {
     const op = interval(1000).pipe(mapTo(mapToItem))
+    this.handleResults(op)
+  }
+
+  _scan(items) {
+    const op = from(items).pipe(scan((all, cur) => [cur, ...all], []))
     this.handleResults(op)
   }
 

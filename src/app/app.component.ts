@@ -196,6 +196,13 @@ export class AppComponent {
       desc: "Map emissions to constant value",
       name: "mapTo(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/mapto"
+    },
+    {
+      action: () => this.dataService._scan(this.inputData),
+      code: `scan((all, cur) => [cur, ...all], [])`,
+      desc: "Reduce over time",
+      name: "scan(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/scan"
     }
   ];
   constructor(public dataService: DataService) {
