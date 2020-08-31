@@ -205,8 +205,13 @@ export default class DataService {
     this.handleResults(op);
   }
 
+  _tap(emojis) {
+    const op = of(emojis).pipe(tap(() => console.log("👋")));
+    this.handleResults(op);
+  }
+
   handleResults(op: Observable<any>) {
-    this.listener = op.pipe(tap(r => console.log(r))).subscribe();
+    this.listener = op.pipe(tap(res => console.log(res))).subscribe();
     // store operation Observable to render results for the UI
     this.results$ = op;
   }

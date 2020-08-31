@@ -205,6 +205,16 @@ export class AppComponent {
       name: "switchMap(...)",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/transformation/switchmap"
+    },
+    {
+      action: () => this.dataService._tap(this.inputData),
+      code: `tap(() => console.log(👋))`,
+      category: "Utility",
+      desc:
+        "Transparently perform actions or side-effects, such as logging",
+      name: "tap(...)",
+      link:
+        "https://www.learnrxjs.io/learn-rxjs/operators/utility/do"
     }
   ];
   constructor(public dataService: DataService) {
