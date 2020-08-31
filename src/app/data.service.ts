@@ -180,6 +180,13 @@ export default class DataService {
     this.handleResults(op);
   }
 
+  // Transformation
+
+  _map(items) {
+    const op = from(items).pipe(map((res) => `${res}✅`))
+    this.handleResults(op)
+  }
+
   handleResults(op: Observable<any>) {
     this.listener = op.pipe(tap(r => console.log(r))).subscribe();
     // store operation Observable to render results for the UI

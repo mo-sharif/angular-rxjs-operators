@@ -176,11 +176,12 @@ export class AppComponent {
       link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
     },
     {
-      action: () => this.dataService._takeUntil(),
-      code: `takeUntil(timer(2000))`,
-      desc: "Emit values until provided observable emits",
-      name: "takeUntil(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
+      action: () => this.dataService._map(this.inputData),
+      category: "Transformation",
+      code: `map((res) => doSomething(res))`,
+      desc: "Apply projection with each value from source",
+      name: "map(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/transformation/map"
     }
   ];
   constructor(public dataService: DataService) {
