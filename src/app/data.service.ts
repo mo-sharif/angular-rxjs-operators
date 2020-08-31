@@ -33,8 +33,10 @@ import {
   distinctUntilChanged,
   take,
   takeUntil,
-  scan
+  scan,
+  shareReplay
 } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export default class DataService {
@@ -58,6 +60,12 @@ export default class DataService {
     of("🚀").pipe(delay(500)),
     of("💨").pipe(delay(400))
   ];
+
+  getTodosFromApi$ = this.http.get(
+    "https://jsonplaceholder.typicode.com/todos"
+  );
+
+  constructor(private http: HttpClient) {}
 
   // Creation operators
   _from(item) {
@@ -211,11 +219,12 @@ export default class DataService {
   }
 
   _toPromise(emojis) {
-    const op = of(emojis).toPromise()
-    // output emojis
-  .then(result => {
-    console.log('From Promise:', result);
-  });
+    const op = of(emojis)
+      .toPromise()
+      // output emojis
+      .then(result => {
+        console.log("From Promise:", result);
+      });
   }
 
   handleResults(op: Observable<any>) {

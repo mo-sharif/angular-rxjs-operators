@@ -7,8 +7,10 @@ import DataService from "./data.service";
 import { IntroComponent } from "./components/intro.component";
 import { FooterComponent } from "./components/footer.component";
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule,HttpClientModule, FormsModule, ReactiveFormsModule],
   declarations: [AppComponent, IntroComponent, FooterComponent],
   bootstrap: [AppComponent],
   providers: [DataService]

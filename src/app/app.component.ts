@@ -220,7 +220,7 @@ export class AppComponent {
       desc: "Convert observable to promise (Not pipable)",
       name: "toPromise(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/utility/topromise"
-    }
+    },
   ];
   constructor(public dataService: DataService) {
     this.myForm = new FormGroup({
