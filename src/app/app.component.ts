@@ -147,44 +147,40 @@ export class AppComponent {
         "https://www.learnrxjs.io/learn-rxjs/operators/filtering/debouncetime"
     },
     {
+      code: `filter((input) => input >= 3)`,
+      isInput: true,
+      desc: "Emit values that pass the provided condition",
+      name: "filter(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter"
+    },
+    {
       action: () => this.dataService._distinctUntilChanged(this.inputData),
-      code: `distinctUntilChanged(${this.strInputData})`,
+      code: `from(${this.strInputData}).pipe(distinctUntilChanged());`,
       desc: "Only emit when the current value is different than the last",
       name: "distinctUntilChanged(...)",
       link:
         "https://www.learnrxjs.io/learn-rxjs/operators/filtering/distinctuntilchanged"
     },
     {
-      code: `filter((input) => input >= 3)`,
-      isInput: true,
-      desc: "Emit values that pass the provided condition",
-      name: "filter(...)",
-      link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter"
-    },
-    {
       action: () => this.dataService._take(this.inputData, 2),
       code: `take(2)`,
       desc: "Emit provided number of values before completing",
-      name: "take(count: number): Observable",
-      link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/take"
+      name: "take(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/take"
     },
     {
       action: () => this.dataService._takeUntil(),
       code: `takeUntil(timer(2000))`,
       desc: "Emit values until provided observable emits",
-      name: "takeUntil(notifier: Observable): Observable",
-      link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
+      name: "takeUntil(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
     },
     {
       action: () => this.dataService._takeUntil(),
       code: `takeUntil(timer(2000))`,
       desc: "Emit values until provided observable emits",
-      name: "takeUntil(notifier: Observable): Observable",
-      link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
+      name: "takeUntil(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/filtering/takeuntil"
     }
   ];
   constructor(public dataService: DataService) {
@@ -198,7 +194,6 @@ export class AppComponent {
       .pipe(
         // debounceTime 500ms
         debounceTime(500),
-        distinctUntilChanged(),
         // filter out words with 3 letters or less
         filter(({ myInput }) => myInput.length >= 3),
         map(({ myInput }) => this.dataService._handleInputChange(myInput))

@@ -131,10 +131,10 @@ export default class DataService {
     );
     this.handleResults(op);
   }
-  _catchError(error) {
+  _catchError(errorMsg) {
     const observableWithError$ = of().pipe(throwError);
 
-    const op = observableWithError$.pipe(catchError(() => of(error)));
+    const op = observableWithError$.pipe(catchError(() => of(errorMsg)));
     this.handleResults(op);
   }
 
