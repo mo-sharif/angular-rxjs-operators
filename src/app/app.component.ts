@@ -32,18 +32,18 @@ export class AppComponent {
       link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/from"
     },
     {
-      action: () => this.dataService._interval(1000),
-      code: `interval(1000)`,
-      desc: "Emit numbers in sequence based on provided timeframe.",
-      name: "interval(...)",
-      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/interval"
-    },
-    {
       action: () => this.dataService._of(this.inputData),
       code: `of(${this.strInputData})`,
       desc: "Emit a sequence of an object, array, and function",
       name: "of(...)",
       link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/of"
+    },
+    {
+      action: () => this.dataService._interval(1000),
+      code: `interval(1000)`,
+      desc: "Emit numbers in sequence based on provided timeframe.",
+      name: "interval(...)",
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/creation/interval"
     },
     {
       // condition hardcodede to false
@@ -210,11 +210,9 @@ export class AppComponent {
       action: () => this.dataService._tap(this.inputData),
       code: `tap(() => console.log(👋))`,
       category: "Utility",
-      desc:
-        "Transparently perform actions or side-effects, such as logging",
+      desc: "Transparently perform actions or side-effects, such as logging",
       name: "tap(...)",
-      link:
-        "https://www.learnrxjs.io/learn-rxjs/operators/utility/do"
+      link: "https://www.learnrxjs.io/learn-rxjs/operators/utility/do"
     }
   ];
   constructor(public dataService: DataService) {

@@ -65,13 +65,13 @@ export default class DataService {
     this.handleResults(op);
   }
 
-  _interval(item: number) {
-    const op = interval(item);
+  _of(item) {
+    const op = of(item);
     this.handleResults(op);
   }
 
-  _of(item) {
-    const op = of(item);
+  _interval(item: number) {
+    const op = interval(item);
     this.handleResults(op);
   }
 
