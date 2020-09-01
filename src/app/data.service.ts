@@ -207,7 +207,7 @@ export default class DataService {
 
   _switchMap(emojis) {
     const op = of(emojis).pipe(
-      switchMap((item: string) => of(["🚗", "⚽️", "🍻"]))
+      switchMap(() => of(["🚗", "⚽️", "🍻"]))
     );
     this.handleResults(op);
   }
