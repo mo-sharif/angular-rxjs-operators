@@ -190,7 +190,6 @@ export default class DataService {
   }
 
   // Transformation
-
   _map(emojis) {
     const op = from(emojis).pipe(map(res => res + "✅"));
     this.handleResults(op);

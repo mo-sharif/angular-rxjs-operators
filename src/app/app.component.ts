@@ -15,6 +15,8 @@ import {
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+
+  //local
   emojis = ["🌴", "🌴", "👍", "🦄"];
   inputData = this.emojis;
   strInputData = JSON.stringify(this.inputData);
@@ -22,6 +24,7 @@ export class AppComponent {
 
   myInput = new FormControl("");
 
+  // UI data
   items = [
     {
       action: () => this.dataService._from(this.inputData),
@@ -229,6 +232,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    // handle input changes from a text field
     this.myForm.valueChanges
       .pipe(
         // debounceTime 500ms
